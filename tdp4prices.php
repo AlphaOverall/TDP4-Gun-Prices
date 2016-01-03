@@ -44,9 +44,9 @@ if (preg_match("/((how many)|(how much)|((what).?(s|'s|is))).?(does|is|cash|coin
       if (preg_match("/(in|on|with|off)(.)*(%|percent)/", $message)) {
         preg_match("/(\d|\s)+(%|percent)/", $message, $matches);
         $discount =  (int) $matches[0];
-        $coins -= ceil($coins * ($discount/100));
+        $coins -= floor($coins * ($discount/100));
         if ($cash != "1-Infinity") {
-          $cash -= ceil($cash * ($discount/100));
+          $cash -= floor($cash * ($discount/100));
         }
         $sale = " with " . $discount . "% discount";
       }

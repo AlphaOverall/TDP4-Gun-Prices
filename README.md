@@ -1,4 +1,4 @@
-# TDP4 Gun Prices
+# TDP4 Weapon Prices
 An API written in PHP to get TDP4 weapon prices. Built based off of [DPBot](http://www.kongregate.com/accounts/DPBot) code, so usage takes in a message in the form <br>`how much is weapon [with 50% discount]` or <br>`what is the cost of weapon`<br>(both have variations in regex) and returns an answer. Usage here:<br>
 <code><a href="http://www.alphaoverall.com/api/tdp4prices.php?message=how%20much%20is%20colt%20with%2050%%20discount">
 http://www.alphaoverall.com/api/tdp4prices.php?message=how%20much%20is%20colt%20with%2050%%20discount
@@ -18,3 +18,4 @@ A message which doesn't follow the guidelines will return
 ```
 Use freely.
 Created by [AlphaOverall](www.kongregate.com/accounts/AlphaOverall)
+<input type="hidden" value="https://repl.it/BbYs used this for conversion between js and php arrays, mostly worked">

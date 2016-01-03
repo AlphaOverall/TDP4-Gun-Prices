@@ -24,5 +24,5 @@ If a weapon doesn't exist:
 }
 ```
 Use freely.
-Created by [AlphaOverall](www.kongregate.com/accounts/AlphaOverall)
+Created by [AlphaOverall](http://www.kongregate.com/accounts/AlphaOverall)
 <input type="hidden" value="https://repl.it/BbYs used this for conversion between js and php arrays, mostly worked">

@@ -33,38 +33,40 @@ $weapons = array(
           array("Toxic Gun", "/toxic/", 40000, 55), array("Crossbow", "/cross.?bow/", 14000, 14), array("Demon Hunter", "/demon|hunter/", 20000, 25),
           array("Medieval Gatling Gun", "/med.?e.?val.?gatling/", 35400, 60));
 $match = false;
-for ($x = 0; $x < sizeof($weapons); $x++) {
-  if (preg_match($weapons[$x][1], $message)) {
-    $match = true;
-    $result = "The cost of " . $weapons[$x][0] . " is ";
-    $coins = $weapons[$x][2];
-    $cash = $weapons[$x][3];
-    $sale = "";
-    if (preg_match("/(in|on|with|off)(.)*(%|percent)/", $message)) {
-      preg_match("/(\d|\s)+(%|percent)/", $message, $matches);
-      $discount =  (int) $matches[0];
-      $coins -= ceil($coins * ($discount/100));
-      if ($cash != "1-Infinity") {
-        $cash -= ceil($cash * ($discount/100));
+if (preg_match("/((how many)|(how much)|((what).?(s|'s|is))).?(does|is|cash|coins|are|for|the|cost|price)/", $message)) {
+  for ($x = 0; $x < sizeof($weapons); $x++) {
+    if (preg_match($weapons[$x][1], $message)) {
+      $match = true;
+      $result = "The cost of " . $weapons[$x][0] . " is ";
+      $coins = $weapons[$x][2];
+      $cash = $weapons[$x][3];
+      $sale = "";
+      if (preg_match("/(in|on|with|off)(.)*(%|percent)/", $message)) {
+        preg_match("/(\d|\s)+(%|percent)/", $message, $matches);
+        $discount =  (int) $matches[0];
+        $coins -= ceil($coins * ($discount/100));
+        if ($cash != "1-Infinity") {
+          $cash -= ceil($cash * ($discount/100));
+        }
+        $sale = " with " . $discount . "% discount";
       }
-      $sale = " with " . $discount . "% discount";
-    }
-    if ($coins > 0) {
-      $result = $result . $coins . " coins";
-    }
-    if ($cash > 0 || cash == "1-Infinity") {
       if ($coins > 0) {
-        $result = $result . " and ";
+        $result = $result . $coins . " coins";
       }
-      $result = $result . $cash . " cash";
+      if ($cash > 0 || cash == "1-Infinity") {
+        if ($coins > 0) {
+          $result = $result . " and ";
+        }
+        $result = $result . $cash . " cash";
+      }
+      if ($cash == 0 && $coins == 0) {
+        $result = $result . "absolutely nada with a 100% discount!";
+      }
+      else {
+        $result = $result . $sale;
+      }
+      echo json_encode(array("result" => $result));
     }
-    if ($cash == 0 && $coins == 0) {
-      $result = $result . "absolutely nada with a 100% discount!";
-    }
-    else {
-      $result = $result . $sale;
-    }
-    echo json_encode(array("result" => $result));
   }
 }
 if (!$match) echo json_encode(array("error" => "No result for '" . $message . "'"));

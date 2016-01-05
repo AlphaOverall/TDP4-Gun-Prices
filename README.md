@@ -14,7 +14,9 @@ http://www.alphaoverall.com/api/tdp4/weaponprices.php?weapon=colt&discount=50
 returns
 ```json
 {
-  "result": "The cost of Colt King Cobra is 500 coins with 50% discount"
+  "result": "The cost of Colt King Cobra is 500 coins with 50% discount",
+  "coins": 500,
+  "cash": 0
 }
 ```
 If a weapon doesn't exist:

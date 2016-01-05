@@ -63,7 +63,7 @@ for ($x = 0; $x < sizeof($weapons); $x++) {
     else {
       $result = $result . $sale;
     }
-    echo json_encode(array("result" => $result));
+    echo json_encode(array("result" => $result, "coins" => $coins, "cash" => $cash));
   }
 }
 if (!$match) echo json_encode(array("error" => "No weapon named '" . $weapon . "'"));
